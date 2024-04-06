@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <script>
+   fetch('https://fakestoreapi.com/products')
+    .then((res) =>  console.log(res.json()))
+   .then((msg)=> console.log(msg.id,msg.title,msg.price,msg.description,msg.category))
+	//return res.json; 
+
+ 
+   // .then(data => {
+	  //data.forEach(user =>{
+		  //const markup ='<li> ${user.title}</li>';
+	 // });
+   //  })
+ .catch(error =>  console.log(error));
+ </script> 
+</body>
+</html>
