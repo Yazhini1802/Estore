@@ -152,6 +152,7 @@ public class savetodb extends HttpServlet {
 				System.out.println("cid set in cache:"+cId);
 			}
 			String pId=request.getParameter("Product_id");
+			String change = request.getParameter("change");
 			System.out.println("doPut--->calling getQuantity Cid:"+cId +" pId:"+pId);
 			float arr[]=getQuantityAndPrice(cId,pId);
 			if(arr!=null) {

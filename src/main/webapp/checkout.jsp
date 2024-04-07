@@ -113,7 +113,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,7 +129,6 @@
         </li>
         <li class="nav-item justify-content-end" tabindex="-1">
        <form class="d-flex justify-content-end" tabindex="-1">
-      <button class="btn btn-outline-success justify-content-end" type="submit" tabindex="-1">Search</button>
        <button style="margin-left: 10px" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">logout</button>
        </form>
        </li>
@@ -208,18 +207,18 @@
 			          const total = document.createElement("p");
 			          total.textContent = "Sub-Total:" + itemTotal.toFixed(2);
 
-			          const decButton = document.createElement("button");
-			          decButton.textContent = "-";
-			          decButton.classList.add("decButton");
-			          decButton.addEventListener("click", () => {
-			            decQuan(product);
-			          });
-			          const incButton = document.createElement("button");
-			          incButton.textContent = "+";
-			          incButton.classList.add("incButton");
-			          incButton.addEventListener("click", () => {
-			            incQuan(product);
-			          });
+// 			          const decButton = document.createElement("button");
+// 			          decButton.textContent = "-";
+// 			          decButton.classList.add("decButton");
+// 			          decButton.addEventListener("click", () => {
+// 			            decQuan(product);
+// 			          });
+// 			          const incButton = document.createElement("button");
+// 			          incButton.textContent = "+";
+// 			          incButton.classList.add("incButton");
+// 			          incButton.addEventListener("click", () => {
+// 			            incQuan(product);
+// 			          });
 			          const removeButton = document.createElement("button");
 			          removeButton.textContent = "Remove from Cart";
 			          removeButton.classList.add("removeButton");
@@ -232,8 +231,8 @@
 			          cartItemElement.appendChild(quantity1);
 			          cartItemElement.appendChild(total);
 			          cartItemElement.appendChild(removeButton);
-			          cartItemElement.appendChild(decButton);
-			          cartItemElement.appendChild(incButton);
+			        //  cartItemElement.appendChild(decButton);
+			        //  cartItemElement.appendChild(incButton);
 
 			          cartItemsDiv.appendChild(cartItemElement);
 			        });
@@ -291,7 +290,7 @@
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	<button onclick="loadmyCart()">cart</button>
+
 </body>
 </html>
 

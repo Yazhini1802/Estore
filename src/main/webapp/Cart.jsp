@@ -106,32 +106,54 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/Estore/Cart.jsp">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/Estore/checkout.jsp">Cart</a>
         </li>
+        <li class="nav-item justify-content-end" tabindex="-1">
+       <form class="d-flex justify-content-end" tabindex="-1">
+       <button style="margin-left: 10px" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">logout</button>
+       </form>
+       </li>
       </ul>
+      
     </div>
   </div>
 </nav>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-          <a class="nav-link" href="/Estore/checkout.jsp" tabindex="-1" >Cart</a>
-    </ul>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Warning!</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        You will be Logged out of this session.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+		        <form action="/Estore/LogoutServlet" method="post">
+		       		<button class="btn btn-danger" type="submit" >Logout</button>
+		     	</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+   
     <h1 id="head">Estore-Products</h1>
     <div id="productList"></div>
     <div id="cart">
-      <h2>Cart</h2>
+     
       <div id="cartItems"></div>
     </div>
 
@@ -197,7 +219,7 @@
           var pr = product.price;
           var decsub = decquan * pr;
           updateCart(product);
-          //renderCart();
+          renderCart();
         }
       }
       function incQuan(product) {
@@ -211,7 +233,7 @@
         // console.log(product);
         var incsub = incquan * pr;
         updateCart(product);
-       // renderCart();
+       renderCart();
       }
 
       function addToCart(product) {
@@ -235,7 +257,7 @@
           cart.push({ product: product, quantity: 1 });
        // }
 
-        renderCart();
+      //  renderCart();
         alert("Added to cart successfully")
       }
       function updateCart(product) {
@@ -467,7 +489,7 @@
               // console.log('product:',prod, 'quantity:', qty);
             });
           })
-          .then(rendercart())
+         // .then(rendercart())
           .catch((error) => {
             // Handle errors
             console.error("Error:", error);
@@ -476,6 +498,7 @@
 
      // console.log("product map", prodMap);
     </script>
-    <button onclick="loadmyCart()"> cart </button>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
   </body>
 </html>
