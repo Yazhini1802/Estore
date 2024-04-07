@@ -57,7 +57,7 @@ public class savetodb extends HttpServlet {
 				PreparedStatement preparedStatement=con.prepareStatement("select * from cart where customer_id=?");
 				preparedStatement.setInt(1,cId);
 				ResultSet rt = preparedStatement.executeQuery();
-				System.out.println("Rt"+ rt.next());
+				//System.out.println("Rt"+ rt.next());
 				JsonArray jarray = new JsonArray();
 				while (rt.next()) {
 				int prId=rt.getInt("Product_id");
@@ -171,36 +171,7 @@ public class savetodb extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		UserActions ua=new UserActions();
-//		Connection con;
-//		try {
-//			con = ua.getConnection();
-//			HttpSession session=request.getSession();
-//			int cId;
-//			try {
-//			cId=Integer.parseInt( session.getAttribute("user_id").toString());
-//			}
-//			catch(Exception e) {
-//				cId=Integer.parseInt(request.getParameter("cid"));
-//				System.out.println(cId);
-//			}
-//			String pId=request.getParameter("Product_id");
-//			String qty=request.getParameter("Product_qty");
-//			String price=request.getParameter("price");
-//			  String sql = "UPDATE cart SET Product_qty = ?, Sub_total=? WHERE product_id = ? and customer_id=? ";
-//			 PreparedStatement ps=con.prepareStatement(sql);
-//			 ps.setString(1, qty);
-//			 ps.setString(2 ,price);
-//			 ps.setString(3 , pId);
-//			 ps.setInt(4 , cId );
-//			 System.out.println(ps);
-//			 ps.executeUpdate();
-//			 System.out.println("updated in table :"+pId);
-//			 response.getWriter().write("response:");  
-//		} catch (ClassNotFoundException | SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+//		
 	}
 	public float[] getQuantityAndPrice(String customerId,String productId) {
 		try {

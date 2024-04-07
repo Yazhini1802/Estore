@@ -1,25 +1,24 @@
 <%@ page import="java.io.*, java.util.*, javax.servlet.*, java.sql.*" %>
 <!DOCTYPE html>
 <%
-			 response.setHeader("Cache-Control", "no-cache");
-			 response.setHeader("Cache-Control", "no-store");
-			 response.setHeader("Pragma", "no-cache");
-			 response.setDateHeader("Expires", 0);
-		%>
+	 response.setHeader("Cache-Control", "no-cache");
+	 response.setHeader("Cache-Control", "no-store");
+	 response.setHeader("Pragma", "no-cache");
+	 response.setDateHeader("Expires", 0);
+%>
 <html lang="en">
   <head>
     <%@ page import="javax.servlet.http.HttpSession" %>
-    <link
+  <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product List</title>
-    <style>
-      .product-card {
+      crossorigin="anonymous"  />
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Product List</title>
+   <style>
+.product-card {
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
@@ -121,8 +120,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/Estore/checkout.jsp">Cart</a>
         </li>
-       
-        
       </ul>
     </div>
   </div>
@@ -139,18 +136,11 @@
     </div>
 
     <script>
-      //const redis=new Redis();
+     
       let cart = [];
       let prodMap = new Map();
 
-      //.then(data => {
-      // Handle the response data
-      // console.log(data);
-      // renderCart(data);
-      //  });
-
-      //window.addEventListener('sessionrestore', reloadCart());
-      //URL to which the POST request will be sent
+     
       function saveToDBviaPostMethod(Product) {
         const url =
           "http://localhost:8080/Estore/savetodb?Product_id=" +
@@ -207,6 +197,7 @@
           var pr = product.price;
           var decsub = decquan * pr;
           updateCart(product);
+          //renderCart();
         }
       }
       function incQuan(product) {
@@ -220,10 +211,11 @@
         // console.log(product);
         var incsub = incquan * pr;
         updateCart(product);
+       // renderCart();
       }
 
       function addToCart(product) {
-        //let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+       
         //console.log("Add to cart fn"+product.id);
        // const existingItem = cart.find(
           //(item) => item.product.id === product.id
@@ -242,8 +234,9 @@
          // saveToDBviaPostMethod(product);
           cart.push({ product: product, quantity: 1 });
        // }
-        // sessionStorage.setItem('cart', JSON.stringify(cart));
+
         renderCart();
+        alert("Added to cart successfully")
       }
       function updateCart(product) {
         const url =
@@ -310,12 +303,10 @@
         cart = cart.filter((item) => item.product.id !== product.id);
         renderCart();
       }
-      //function saveCartToDatabase() {
-      // const cartData = cart.map(item => ({ productId: item.product.id, quantity: item.quantity }));
-      // console.log
+     
 
       function renderCart() {
-        // let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+       
         const cartItemsDiv = document.getElementById("cartItems");
         cartItemsDiv.innerHTML = ""; // Clear previous items
 
@@ -378,27 +369,7 @@
         cartItemsDiv.appendChild(subtotal);
       }
 
-      //function fetchproducts(){
-      //try {
-      // Try to get products from Redis cache
-      //const cachedProducts = await redis.get('products');
-      //if (cachedProducts) {
-      //  renderProducts(JSON.parse(cachedProducts));
-      //} else {
-      // Fetch products from API
-      //  const response = await fetch('https://fakestoreapi.com/products');
-      //const products = await response.json();
-      //renderProducts(products);
-      // Cache products in Redis
-      //await redis.set('products', JSON.stringify(products), 'EX', 60); // Cache for 1 minute
-      //}
-      //} catch (error) {
-      //  console.error('Error fetching products:', error);
-      //}
-      //}
-
-      //}
-      //}
+    
 
       fetch("http://localhost:8080/Estore/RedisFetchData")
         .then((response) => response.json())

@@ -33,11 +33,13 @@ public class RedisFetchData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub Jedis jedis = new Jedis("localhost");
-		Jedis jedis = new Jedis("localhost"); // Connect to Redis
+		Jedis jedis = new Jedis("localhost",6379); // Connect to Redis
         String cachedData = jedis.get("cachedData"); // Check if data is cached
-
+        System.out.println( jedis.ping()); 
         if (cachedData != null) { // If data exists in cache
-            response.getWriter().write(cachedData); // Display cached data
+            response.getWriter().write(cachedData); 
+            System.out.println("returning data from cache");
+            //System.out.println(cachedData);
         } else { // If data doesn't exist in cache or has expired
             URL apiUrl = new URL("https://fakestoreapi.com/products"); // API URL
             BufferedReader reader = new BufferedReader(new InputStreamReader(apiUrl.openStream()));
@@ -54,33 +56,7 @@ public class RedisFetchData extends HttpServlet {
         }
         jedis.close(); // Close Redis connection
     }
-//        try {
-//            // Fetch data from URL
-//            URL url = new URL("https://fakestoreapi.com/products");
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-//            StringBuilder data = new StringBuilder();
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                data.append(line);
-//            }
-//            reader.close();
-//
-//            Jedis jedis = new Jedis();
-//			// Cache the data in Redis with a key and set expiration time (e.g., 1 minute)
-//            jedis.setex("cachedData", 60, data.toString());
-//
-//            // Retrieve and print the cached data
-//            String cachedData = jedis.get("cachedData");
-//            System.out.println("Cached data: " + cachedData);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//			// Close the Redis connection
-//            jedis.close();
-//        }
-//    }
-
-
+//      
 
 
 	

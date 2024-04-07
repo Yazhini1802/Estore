@@ -166,6 +166,7 @@
 		</div>
 	<script type="text/javascript">
 	let prodMap = new Map();
+	
 	fetch("https://fakestoreapi.com/products")
 		.then((response) => response.json())
 		.then((products) => {
@@ -244,9 +245,47 @@
 			  .catch(error => {
 			    console.error('Error:', error);
 			  });
-			
+	
+	 function removeFromCart(product) {
+	        const url =
+	          "http://localhost:8080/Estore/savetodb?Product_id=" + product.id;
+	        const params = {
+	          mutesksjf: product.id,
+	          price: product.price,
+	          Product_qty: "1",
+	          Sub_total: product.Sub_total,
+	        };
+	        const requestOptions = {
+	          method: "DELETE",
+	          headers: {
+	            "Content-Type": "application/json", // Specify the content type as JSON
+	          },
+	          body: JSON.stringify(params), // Convert the parameters to JSON format
+	        };
 
-			
+	        // Send the POST request
+	        fetch(url, requestOptions)
+	          .then((response) => {
+	            if (!response.ok) {
+	              throw new Error("Network response was not ok");
+	            }
+	            return response; // Parse the response JSON
+	          })
+	          .then((data) => {
+	        	  location.reload();
+	            // Handle the response data
+	            // console.log('Response:', data);
+	          })
+	          .catch((error) => {
+	            // Handle errors
+	            console.error("Error:", error);
+	          });
+	        cart = cartData.filter((item) => item.product.id == product.id);
+	     // Reload the current page
+	        //renderCart();
+
+	      }
+	
 	
 	
 
