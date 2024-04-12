@@ -52,8 +52,9 @@ public class UserActions {
 	public boolean usernameExist(String username) {
 		try {
 			Connection con =getConnection();
-			String query = "select * from user where username =" +username;
+			String query = "select * from user where username =?" ;
 			PreparedStatement preparedStatement=con.prepareStatement(query);
+			preparedStatement.setString(1, username);
 			ResultSet rt = preparedStatement.executeQuery();
 			if(rt.next()) {
 				return true;
